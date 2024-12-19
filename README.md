@@ -1,2 +1,9 @@
 # vh-tests
-Valohai testing
+
+Miscellaneous Valohai testing
+
+## Update Dependencies
+
+```shell
+just dev
+```
