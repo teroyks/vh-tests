@@ -1,0 +1,6 @@
+# Valohai libraries
+valohai-utils
+valohai-cli
+
+# Data generation
+faker
