@@ -1,5 +1,5 @@
 # Valohai libraries
-valohai-utils
+valohai-utils>=0.6.0
 valohai-cli
 
 # Data generation
