@@ -242,3 +242,5 @@ fabric.properties
 
 # --- JetBrains gitignore end ---
 
+# Valohai files
+.valohai/
