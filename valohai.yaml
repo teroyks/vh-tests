@@ -19,3 +19,14 @@
       - source .venv/bin/activate
       - uv pip install -r requirements.txt
       - python execution-info/print_execution_info.py {parameters}
+- step:
+    name: exec-config
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+    command:
+      - uv venv
+      - source .venv/bin/activate
+      - uv pip install -r requirements.txt
+      # until config support is available, vendor in a dev version of the utils library
+      - tar xfz ./valohai-utils.tgz
+      - UV_LINK_MODE=copy uv pip install -e valohai-utils
+      - python execution-info/get_execution_config.py {parameters}

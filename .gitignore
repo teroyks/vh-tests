@@ -244,3 +244,8 @@ fabric.properties
 
 # Valohai files
 .valohai/
+valohai-utils
+
+# Dev files
+Makefile
+justfile
