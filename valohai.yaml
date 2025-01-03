@@ -11,3 +11,11 @@
         default: 10
         optional: false
         type: integer
+- step:
+    name: exec-info
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+    command:
+      - uv venv
+      - source .venv/bin/activate
+      - uv pip install -r requirements.txt
+      - python execution-info/print_execution_info.py {parameters}
