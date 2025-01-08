@@ -8,6 +8,7 @@ Miscellaneous testing of execution output properties (including adding files to 
 
 ### Steps
 
+- `exec-config`: Log execution configuration details.
 - `properties-fixed-dataset-version`: Add a fixed dataset version to the output properties.
 
 ## Update Dependencies
