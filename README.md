@@ -14,5 +14,5 @@ Miscellaneous testing of execution output properties (including adding files to 
 ## Update Dependencies
 
 ```shell
-just dev
+make dev
 ```

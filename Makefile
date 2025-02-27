@@ -1,3 +1,7 @@
+# install/update dependencies
+dev:
+	uv pip install -r requirements.txt --refresh --upgrade
+
 # package valohai-utils for distribution
 # makes current development version available in an execution environment
 valohai-utils.tgz: valohai-utils ../valohai-utils/valohai/*
