@@ -32,9 +32,11 @@
       - python execution-info/get_execution_config.py {parameters}
 - step:
     name: run-for-limited-time
-    image: python:3.11-slim
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
     command:
-      - pip install -r requirements.txt
+      - uv init
+      - uv add valohai-utils
+      - source .venv/bin/activate
       - python execution_timeout/run_for_given_time.py {parameters}
     time-limit: 20
     parameters:
