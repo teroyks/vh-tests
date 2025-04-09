@@ -44,3 +44,19 @@
         default: 120
         optional: false
         type: integer
+- step:
+    name: create-output-files
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    parameters:
+      - name: nr_of_files
+        type: integer
+        default: 1
+      - name: file_size
+        type: string
+        default: 1KiB
+    command:
+      - uv init
+      - uv add valohai-utils
+      - uv add humanfriendly
+      - uv add faker
+      - uv run python create_output_files/create_files.py {parameters}

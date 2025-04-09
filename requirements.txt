@@ -4,3 +4,6 @@ valohai-cli
 
 # Data generation
 faker
+
+# File size parsing
+humanfriendly
