@@ -9,6 +9,7 @@ Miscellaneous testing of execution output properties (including adding files to 
 ### Steps
 
 - `exec-config`: Log execution configuration details.
+- `log-inputs`: Output input file contents to the execution log (to test input access).
 - `properties-fixed-dataset-version`: Add a fixed dataset version to the output properties.
 - `run-for-given-time`: Run an execution for n seconds (given as parameter) to test timeouts.
 

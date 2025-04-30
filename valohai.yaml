@@ -60,3 +60,12 @@
       - uv add humanfriendly
       - uv add faker
       - uv run python create_output_files/create_files.py {parameters}
+- step:
+    name: log-inputs
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    inputs:
+      - name: input_data
+    command:
+      - uv init
+      - uv add valohai-utils
+      - uv run python log_inputs/log_inputs.py
