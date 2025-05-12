@@ -38,34 +38,35 @@
       - uv add valohai-utils
       - source .venv/bin/activate
       - python execution_timeout/run_for_given_time.py {parameters}
-    time-limit: 20
     parameters:
       - name: duration
         default: 120
         optional: false
         type: integer
+    time-limit: 20
 - step:
     name: create-output-files
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
-    parameters:
-      - name: nr_of_files
-        type: integer
-        default: 1
-      - name: file_size
-        type: string
-        default: 1KiB
     command:
       - uv init
       - uv add valohai-utils
       - uv add humanfriendly
       - uv add faker
       - uv run python create_output_files/create_files.py {parameters}
+    parameters:
+      - name: nr_of_files
+        default: 1
+        type: integer
+      - name: file_size
+        default: 1KiB
+        type: string
 - step:
     name: log-inputs
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
-    inputs:
-      - name: input_data
     command:
       - uv init
       - uv add valohai-utils
       - uv run python log_inputs/log_inputs.py
+    inputs:
+      - name: input_data
+        optional: false
