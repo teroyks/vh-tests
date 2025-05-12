@@ -70,3 +70,15 @@
     inputs:
       - name: input_data
         optional: false
+- step:
+    name: run-with-no-output-timeout
+    image: python:3.11-slim
+    no-output-timeout: 5
+    command:
+      - pip install -r requirements.txt
+      - python execution_timeout/run_until_no_output_timeout.py {parameters}
+    parameters:
+      - name: duration
+        default: 5
+        optional: false
+        type: integer
