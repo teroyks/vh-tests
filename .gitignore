@@ -164,6 +164,7 @@ cython_debug/
 # Valohai files
 .valohai/
 valohai-utils
+valohai-yaml.tgz
 
 # Dev files
 Makefile
