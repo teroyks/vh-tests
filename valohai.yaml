@@ -82,3 +82,8 @@
         default: 5
         optional: false
         type: integer
+- step:
+    name: step with python 3.13 image
+    image: python:3.13
+    command:
+      - python --version
