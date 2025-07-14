@@ -87,3 +87,28 @@
     image: python:3.13
     command:
       - python --version
+
+# simple pipeline -- wrap a single execution with parameter in a pipeline node
+- step:
+    name: pipeline-hello
+    image: python:3.13-slim-bookworm
+    command:
+      - python ./simple_pipeline/hello-with-parameter.py {parameters}
+    parameters:
+      - name: "name"
+        type: string
+        default: "Valohai"
+        # description: "The name to greet."
+
+- pipeline:
+    name: simple-pipeline
+    parameters:
+      - name: "greet-name"
+        targets:
+          - hello-node.parameters.name
+        default: "Valohai pipeline"
+    nodes:
+      - name: hello-node
+        type: execution
+        step: pipeline-hello
+    edges: [ ]

@@ -18,3 +18,11 @@ run-execution-with-no-output-limit:
     # run a longer execution with no output limit defined in the config YAML
     # the execution will be terminated after --duration=N seconds
     vh execution run --title "execution with no-output limit" run-with-no-output-timeout --watch --adhoc
+
+simple-pipeline-run-step:
+    # run the pipeline step with default parameter
+    @echo "Starting execution -- should output 'Hello, Valohai!'"
+    vh execution run --adhoc --watch pipeline-hello
+
+simple-pipeline-run:
+    vh pipeline run --adhoc simple-pipeline --greet-name="Just Pipeline"
