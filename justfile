@@ -26,3 +26,11 @@ simple-pipeline-run-step:
 
 simple-pipeline-run:
     vh pipeline run --adhoc simple-pipeline --greet-name="Just Pipeline"
+
+run-execution-list-model-contents:
+    # run an execution that lists the contents of a model
+    vh execution run --adhoc --watch --title "list model contents" list-model-contents --model-url=model://test-model/1
+
+model-pipeline-run:
+    # run a pipeline that uses a model -- use default parameters
+    vh pipeline run --adhoc model-pipeline
