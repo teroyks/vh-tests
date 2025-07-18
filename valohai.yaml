@@ -61,6 +61,16 @@
         default: 1KiB
         type: string
 - step:
+    name: create-dataset-with-invalid-name
+    description: |
+      This step is used to test the validation of dataset names.
+      It should fail with an error about invalid characters in the name.
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - uv init
+      - uv add valohai-utils
+      - uv run python create_dataset/create_dataset_with_invalid_name.py
+- step:
     name: log-inputs
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
     command:
