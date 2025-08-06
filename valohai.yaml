@@ -172,6 +172,7 @@
       - uv run python model_pipeline/list_datum_data.py
     inputs:
       - name: datum
+        description: Any datum will do
         optional: false
 - pipeline:
     name: model-and-input-pipeline
