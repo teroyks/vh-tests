@@ -110,6 +110,7 @@
         type: string
         default: "Valohai"
         # description: "The name to greet."
+# lists contents of a model, can take model as input or parameter
 - step:
     name: list-model-contents
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
@@ -120,6 +121,7 @@
     parameters:
       - name: model_url
         type: string
+        optional: true
         # default: model://test-model/1
         # description: "The model URL to list contents of."
     inputs:
