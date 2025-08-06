@@ -160,3 +160,26 @@
           - list-model-node.parameters.model_url
         default: model://test-model/1
     edges: [ ]
+
+
+# model and input pipeline -- two nodes, one takes a model URL as input and the other a datum URL
+- step:
+    name: list-datum-data
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - uv init
+      - uv add valohai-utils
+      - uv run python model_pipeline/list_datum_data.py
+    inputs:
+      - name: datum
+        optional: false
+- pipeline:
+    name: model-and-input-pipeline
+    nodes:
+      - name: list-model-input-node
+        type: execution
+        step: list-model-contents
+      - name: list-datum-data-node
+        type: execution
+        step: list-datum-data
+    edges: [ ]
