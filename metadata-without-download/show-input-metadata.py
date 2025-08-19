@@ -41,11 +41,10 @@ def parse_metadata(data: dict) -> dict:
     return dict(ChainMap(*properties))
 
 
-api_config_json = (CONFIG_DIR / "api.json").read_text()
-api_config = json.loads(api_config_json)
+# fetch input metadata
+input_metadata_json = (CONFIG_DIR / "inputs.json").read_text()
+input_metadata = json.loads(input_metadata_json)
 
-
-_, execution_token = api_config["input_request"]["headers"]["Authorization"].split(
-    " ", 1
-)
-print(f"Execution token: {execution_token}")
+# fetch input file properties
+for file_data in input_metadata["input_files"]["files"]:
+    print(f"{file_data['datum_id']}: {parse_metadata(file_data)}")

@@ -184,3 +184,14 @@
         type: execution
         step: list-datum-data
     edges: [ ]
+
+# dynamic input handling -- does not load the actual input files if only metadata is handled
+- step:
+    name: get-dynamic-input-metadata
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - uv run python metadata-without-download/show-input-metadata.py
+    inputs:
+      - name: input_files
+        default: datum://01981d62-3dff-68d7-2050-b49d5dd8a1b6
+        download: on-demand
