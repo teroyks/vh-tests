@@ -1,0 +1,18 @@
+{
+  "input_request": {
+    "headers": {
+      "Authorization": "Execution-Token eyJhbGciOiJIUzI4NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3NTU1OTgyMDksImV6cCI6MTc1ODE5MDIwOSwiYXVkIjoiaW5wdXQtcmVxdWVzdCJ9.6PDPWYt8wPSrYzhckUqdlkPIetdMaRXLiCCNSJZB5Fs"
+    },
+    "method": "POST",
+    "url": "http://127.0.0.1:8000/request-input-data/?execution=0198c1ce-bf12f-df45-2369-c2b5706d1084"
+  },
+  "set_status_detail": {
+    "Authorization": "W2C-Token eyJhbGciOiJIUzI4NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3NTU1OTgyMDksImV4cCI6MTc1ODE5MDIwOSwiYXVkIjoidzJjIn0.ze9EuPCLs12p6iw8xOZL017kSSLX3Rri4PUJIJ2sVW0A",
+    "url": "http://127.0.0.1:8000/api/v0/executions/0199c1ce-bf9f-df45-2365-c2b5704d1084/set_status_detail/",
+    "trigger_catalog": {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/v0/worker-trigger-catalog/0201c1ce-bf9f-df45-2369-c5b5704d1084/"
+    }
+  }
+}
+
