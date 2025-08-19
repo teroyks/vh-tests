@@ -1,0 +1,52 @@
+{
+  "input_files": {
+    "files": [
+      {
+        "datum_id": "01981d62-3dff-68d7-2050-b49d5dd9a1b8",
+        "download_intent": "on-demand",
+        "input_id": "0198c218-e1f4-b3a3-6436-5fd3f8849842",
+        "metadata": [
+          {
+            "valohai.dataset-versions": [
+              "dataset://renamedfrommixedcasedatasetname/1752839634.374847"
+            ]
+          }
+        ],
+        "name": "file.txt",
+        "path": "/valohai/inputs/input_files/file.txt",
+        "size": 0,
+        "storage_uri": "https://s3.eu-west-1.amazonaws.com/test-org/dev-bucket/data/02JGN/01JGNMFW6R00GW0X476W5TVBFE/output-127/invalid_dataset_name_test/file.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5FXTZDPVWB5HHRQ4%2F20250819%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250819T113107Z&X-Amz-Expires=259200&X-Amz-SignedHeaders=host&X-Amz-Signature=4b65e24e4162717a5ed628e42d2a10edf382590e77400bcc4c19238887f7a3fe",
+        "uri": "datum://01981d62-3dff-68d7-2049-b51d5dd8a1b6"
+      },
+      {
+        "datum_id": "0197d445-70dc-61d2-7335-2912c952e0b8",
+        "download_intent": "on-demand",
+        "input_id": "0198c218-e1f4-6af1-1375-54ee35f03835",
+        "name": "divider-8799223_1280.png",
+        "path": "/valohai/inputs/input_files/divider-8799223_1280.png",
+        "size": 0,
+        "storage_uri": "https://s3.eu-west-1.amazonaws.com/dev-bucket/data/04JGN/01JGNMFW6R00GW0X476W5TVBFE/upload/divider-8799223_1280.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5H2YRNN6AIRNIJGC%2F20250819%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250819T113107Z&X-Amz-Expires=259200&X-Amz-SignedHeaders=host&X-Amz-Signature=d81690ed26c4a5b1a3efbc77b9bc5e7b9ae217804d5ce467d83daf98ca2de7b9",
+        "uri": "datum://0197d445-70dc-61d2-7340-2911c952e0b8"
+      },
+      {
+        "datum_id": "0193e4e2-0900-6a00-1af7-6c101e95008cc",
+        "input_id": "0198c221-cd86-e600-6a15-506393e7c64a",
+        "metadata": [
+          {
+            "early": 3970,
+            "then": 818376.33687547,
+            "valohai.dataset-versions": [
+              "dataset://metadata-demo-2/1734711836",
+              "dataset://metadata-demo/1734711836"
+            ]
+          }
+        ],
+        "name": "where_9.txt",
+        "path": "/valohai/inputs/input_files/where_9.txt",
+        "storage_uri": "https://s3.eu-west-1.amazonaws.com/dev-bucket/data/02JDH/04JDHKY1KX00GW0X476W5TVBFE/output-33/2024-12-20/where_9.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5H2YRNN6AIR",
+        "uri": "datum://0193e4e2-0900-8a00-1af7-6c98e95011cc"
+      }
+    ],
+    "input_id": "0198c218-e1f4-9af1-1379-54ee35f03832"
+  }
+}
