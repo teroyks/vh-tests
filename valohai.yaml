@@ -202,4 +202,5 @@
       - PYTHONPATH=.
         uv run
         --with valohai-utils
+        --with httpx
         call_api/test_api_call.py
