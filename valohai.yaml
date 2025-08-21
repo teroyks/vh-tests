@@ -15,10 +15,9 @@
     name: exec-info
     image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
     command:
-      - uv venv
-      - source .venv/bin/activate
-      - uv pip install -r requirements.txt
-      - python execution-info/print_execution_info.py {parameters}
+      - uv init
+      - uv add -r requirements.txt
+      - uv run execution-info/print_execution_info.py {parameters}
 - step:
     name: exec-config
     image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim

@@ -30,9 +30,15 @@ print(f"Parameters: {global_state.parameters}")
 
 config_path = Path(get_config_path())
 print(f"Config path: {config_path}")
+output_dir = valohai.outputs()
+print(f"Output path: {output_dir}")
 try:
     for item in config_path.iterdir():
         print(item)
+        # copy files as outputs for inspection
+        if item.is_file():
+            output_file = Path(output_dir.path(item.name))
+            output_file.write_bytes(item.read_bytes())
 
     execution_config_file = config_path / "execution.json"
     execution_config = json.loads(execution_config_file.read_bytes())
