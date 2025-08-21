@@ -13,15 +13,18 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-import httpx
+import httpx  # type: ignore
 
 log = logging.getLogger(__name__)
 
 # add additional DEBUG logging by setting the environment variable `DEBUG=1`
 logging.basicConfig(level=logging.DEBUG if os.getenv("DEBUG") else logging.INFO)
 
+
 CONFIG_DIR = Path("/valohai/config")
 if not CONFIG_DIR.exists():
+    # this part is only for testing the script locally --
+    # not needed for running in Valohai
     log.debug("Running locally, using local directory as config dir.")
     CONFIG_DIR = Path(__file__).parent / "test_config"
     log.debug(CONFIG_DIR)
@@ -69,7 +72,7 @@ def parse_properties(data: dict) -> dict:
     return dict(ChainMap(*properties))
 
 
-def parse_file_metadata(file_data: dict) -> tuple:
+def parse_file_metadata(file_data: dict) -> tuple[str, dict]:
     """Parse file metadata to extract datum ID and properties."""
     datum_id = file_data["datum_id"]
     properties = parse_properties(file_data)
@@ -78,7 +81,11 @@ def parse_file_metadata(file_data: dict) -> tuple:
 
 
 def set_property(datum_id: str, value: Any) -> None:
-    """Set a property for a given datum ID."""
+    """Set a property for a given datum ID.
+
+    Note: this function updates the property for each file individually.
+    In a real-world scenario, you should use the endpoint to update multiple files at once.
+    """
     url = f"{API_URL}/data/{datum_id}/metadata/"
     data = {TEST_PROPERTY: value}
     try:
