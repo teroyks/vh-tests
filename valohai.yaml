@@ -194,6 +194,19 @@
       - name: input_files
         default: datum://01981d62-3dff-68d7-2050-b49d5dd8a1b6
         download: on-demand
+# process input files and update metadata property if it does already exist
+- step:
+    name: update-input-properties
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - uv run
+        --with httpx
+        python update_metadata_properties/update_properties.py
+    inputs:
+      - name: input_files
+        download: on-demand
+        default: datum://01981d62-3dff-68d7-2050-b49d5dd8a1b6
+
 # test calling the valohai API from an execution
 - step:
     name: call-api

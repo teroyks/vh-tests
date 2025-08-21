@@ -1,0 +1,2 @@
+# local environment settings, may include secrets
+env.fish
