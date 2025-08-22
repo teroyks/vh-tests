@@ -31,6 +31,10 @@ The demo script checks for the existence of a property `my_prop`.
 If it does not exist, it adds the properto to the file
 with a random number as the value.
 
+_Note:_ When configuring the step inputs,
+make sure to include the `download: on-demand` directive
+to avoid downloading the files unnecessarily.
+
 _Note:_ This script updates each file with a separate API call.
 This is just to demonstate the functionality;
 for a large number of files, you should use the batch API to update multiple files at once.
