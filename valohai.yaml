@@ -217,3 +217,42 @@
         --with valohai-utils
         --with httpx
         call_api/test_api_call.py
+
+# Pipeline with two steps that have a parameter with the same name
+# For testing passing workflow parameters to the correct node
+- pipeline:
+    name: steps-with-similar-params
+    nodes:
+      - name: node-with-name-and-date
+        type: execution
+        step: name-and-date
+      - name: node-with-name-and-number
+        type: execution
+        step: name-and-number
+    edges: [ ]
+- step:
+    name: name-and-date
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - echo 'Name - {parameter-value:name}'
+      - echo 'Date - {parameter-value:date}'
+    parameters:
+      - name: name
+        type: string
+        default: "Unknown"
+      - name: date
+        type: string
+        default: "0000-00-00"
+- step:
+    name: name-and-number
+    image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+    command:
+      - echo 'Name   - {parameter-value:name}'
+      - echo 'Number - {parameter-value:number}'
+    parameters:
+      - name: name
+        type: string
+        default: "No name"
+      - name: number
+        type: integer
+        default: 0
