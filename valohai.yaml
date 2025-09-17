@@ -162,6 +162,7 @@
 
 
 # model and input pipeline -- two nodes, one takes a model URL as input and the other a datum URL
+# there is also another, optional, datum input (to test default behaviour)
 - step:
     name: list-datum-data
     image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
@@ -173,6 +174,9 @@
       - name: datum
         description: Any datum will do
         optional: false
+      - name: optional_datum
+        description: You can add another
+        optional: true
 - pipeline:
     name: model-and-input-pipeline
     nodes:
