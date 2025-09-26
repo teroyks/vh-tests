@@ -183,9 +183,11 @@
       - name: list-model-input-node
         type: execution
         step: list-model-contents
+        on-error: continue
       - name: list-datum-data-node
         type: execution
         step: list-datum-data
+        on-error: continue
     edges: [ ]
 
 # dynamic input handling -- does not load the actual input files if only metadata is handled
