@@ -79,6 +79,7 @@
     inputs:
       - name: input_data
         optional: false
+        keep-directories: full
 - step:
     name: run-with-no-output-timeout
     image: python:3.11-slim
