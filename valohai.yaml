@@ -263,3 +263,14 @@
       - name: number
         type: integer
         default: 0
+# Pipeline with just step inputs
+- pipeline:
+    name: steps-with-inputs
+    nodes:
+      - name: list-datum-data
+        type: execution
+        step: list-datum-data
+      - name: log-input-metadata
+        type: execution
+        step: get-dynamic-input-metadata
+    edges: [ ]
