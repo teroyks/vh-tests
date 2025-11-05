@@ -274,3 +274,11 @@
         type: execution
         step: get-dynamic-input-metadata
     edges: [ ]
+# Pipeline with a single optional model step
+- pipeline:
+    name: list-model-contents-pipeline
+    nodes:
+      - name: list-model-contents-node
+        type: execution
+        step: list-model-contents
+    edges: [ ]
