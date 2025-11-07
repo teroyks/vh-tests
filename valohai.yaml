@@ -282,3 +282,15 @@
         type: execution
         step: list-model-contents
     edges: [ ]
+# Pipeline with a single input, to test workflow input handling
+- pipeline:
+    name: single-input-pipeline
+    nodes:
+      - name: log-inputs-node
+        type: execution
+        step: log-inputs
+        override:
+          inputs:
+            - name: input_data
+              default: datum://019a5437-73c2-3b10-388c-6d4137fa9f07
+    edges: [ ]
