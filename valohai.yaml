@@ -162,7 +162,6 @@
         default: model://test-model/1
     edges: [ ]
 
-
 # model and input pipeline -- two nodes, one takes a model URL as input and the other a datum URL
 # there is also another, optional, datum input (to test default behaviour)
 - step:
@@ -295,4 +294,57 @@
             - name: input_data
               optional: true
               default: datum://019a5d9d-7d4f-a937-8d45-e80658f7b4b1
+    edges: [ ]
+# Pipeline with multiple inputs, to test workflow input handling
+- pipeline:
+    name: multiple-inputs-pipeline
+    nodes:
+      - name: exposed-with-default
+        type: execution
+        step: list-datum-data
+        override:
+          inputs:
+            - name: datum
+              description: Required datum with default value
+              optional: false
+              default: datum://019a5d9d-7d4f-a937-8d45-e80658f7b4b1
+            - name: optional_datum
+              description: Optional datum with default value
+              optional: true
+              default: datum://019a5d9d-7d4f-a937-8d45-e80658f7b4b1
+      - name: exposed-without-default
+        type: execution
+        step: list-datum-data
+        override:
+          inputs:
+            - name: datum
+              description: Required datum without default value
+              optional: false
+            - name: optional_datum
+              description: Optional datum without default value
+              optional: true
+      - name: assigned-with-default
+        type: execution
+        step: list-datum-data
+        override:
+          inputs:
+            - name: datum
+              description: Required datum with default value
+              optional: false
+              default: datum://019a5d9d-7d4f-a937-8d45-e80658f7b4b1
+            - name: optional_datum
+              description: Optional datum with default value
+              optional: true
+              default: datum://019a5d9d-7d4f-a937-8d45-e80658f7b4b1
+      - name: assigned-without-default
+        type: execution
+        step: list-datum-data
+        override:
+          inputs:
+            - name: datum
+              description: Required datum without default value
+              optional: false
+            - name: optional_datum
+              description: Optional datum without default value
+              optional: true
     edges: [ ]
