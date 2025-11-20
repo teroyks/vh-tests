@@ -170,3 +170,4 @@ valohai-yaml.tgz
 Makefile
 justfile
 .DS_Store
+.zed/
