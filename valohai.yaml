@@ -348,3 +348,15 @@
               description: Optional datum without default value
               optional: true
     edges: [ ]
+
+# test creating a deployment (version) - needs an endpoint
+# not actually functional
+- endpoint:
+    name: predict-digit
+    description: predict digits from image inputs ("file" parameter)
+    files:
+      - name: model
+        description: Model output file from TensorFlow
+        path: model.h5
+    image: tensorflow/tensorflow:2.6.0
+    wsgi: predict:predict
