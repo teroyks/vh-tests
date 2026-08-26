@@ -373,3 +373,22 @@
         path: model.h5
     image: tensorflow/tensorflow:2.6.0
     wsgi: predict:predict
+
+# test setting environment variables
+- step:
+    name: print-env-vars
+    image: python:3.13-slim
+    command: env | grep MY_CUSTOM
+    environment-variables:
+      - name: MY_CUSTOM_VAR_ONE
+        default: hello
+      - name: MY_CUSTOM_VAR_TWO
+        default: world
+
+- pipeline:
+    name: env-vars-pipeline
+    nodes:
+      - name: print-env-vars-node
+        type: execution
+        step: print-env-vars
+    edges: []
