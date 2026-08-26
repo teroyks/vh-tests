@@ -413,3 +413,11 @@
       - echo Autorestart is set but ignored
     environment: default
     autorestart: true
+# Spot instance without autorestart
+# Testing UI behavior - should show the checkbox
+- step:
+    name: spot instance says hello
+    image: python:3.13-slim
+    command:
+      - echo Hello, World!
+    environment: local-spot
