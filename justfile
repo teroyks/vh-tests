@@ -34,3 +34,16 @@ run-execution-list-model-contents:
 model-pipeline-run:
     # run a pipeline that uses a model -- use default parameters
     vh pipeline run --adhoc model-pipeline
+
+# demo fetching metadata
+dataset-details:
+    xh http://127.0.0.1:8000/api/v0/datasets/018a2c06-09c2-4ff8-83e4-bd192d7258ef/ Authorization:"Token $API_TOKEN" | jello '{k: _[k] for k in _ if k in ["name", "metadata"]}'
+
+# add metadata properties to a dataset
+add-properties:
+    @echo "Adding 'foo' and 'bar'..."
+    echo '{"foo": "value", "bar": 10.0}' | xh post http://127.0.0.1:8000/api/v0/datasets/018a2c06-09c2-4ff8-83e4-bd192d7258ef/metadata Authorization:"Token $API_TOKEN"
+
+update-properties:
+    @echo "Updating 'foo', deleting 'bar'..."
+    echo '{"foo": "new value", "bar": null}' | xh post http://127.0.0.1:8000/api/v0/datasets/018a2c06-09c2-4ff8-83e4-bd192d7258ef/metadata Authorization:"Token $API_TOKEN"
