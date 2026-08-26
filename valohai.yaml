@@ -392,3 +392,24 @@
         type: execution
         step: print-env-vars
     edges: []
+
+# Configure autorestart on a spot instance
+# Used for testing UI default behavior
+- step:
+    name: autorestart-on-spot-instance
+    image: python:3.13-slim
+    command:
+      - echo Running on a spot instance
+      - echo Autorestart enabled by default
+    environment: local-spot
+    autorestart: true
+# Configure autorestart on a non-spot instance
+# Testing UI behavior - setting is ignored on execution
+- step:
+    name: autorestart-on-non-spot-instance
+    image: python:3.13-slim
+    command:
+      - echo Running on a non-spot instance
+      - echo Autorestart is set but ignored
+    environment: default
+    autorestart: true
