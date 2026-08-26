@@ -12,6 +12,19 @@
         optional: false
         type: integer
 - step:
+    name: create-project-scoped-dataset
+    image: ghcr.io/astral-sh/uv:python3.14-trixie-slim
+    command:
+      - uv run
+        --with valohai-utils
+        python output_metadata/create_project_scoped_dataset.py
+    parameters:
+      - name: dataset_name
+        optional: true
+      - name: project_id
+        optional: true
+        default: 01942b47-f0d8-0021-c074-87370badadee
+- step:
     name: exec-info
     image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
     command:
