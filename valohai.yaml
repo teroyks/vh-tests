@@ -403,6 +403,41 @@
       - echo Autorestart enabled by default
     environment: local-spot
     autorestart: true
+
+# Same, but without autorestart set, so node overrides can turn it on
+- step:
+    name: spot-instance-no-autorestart
+    image: python:3.13-slim
+    command:
+      - echo Running on a spot instance
+    environment: local-spot
+
+- pipeline:
+    name: autorestart-pipeline
+    nodes:
+      # step says true, override does not mention it -> stays true
+      - name: inherit-node
+        type: execution
+        step: autorestart-on-spot-instance
+      # explicit false must win over the step's true
+      - name: disabled-node
+        type: execution
+        step: autorestart-on-spot-instance
+        override:
+          autorestart: false
+      # step does not set autorestart, the override turns it on
+      - name: enabled-node
+        type: execution
+        step: spot-instance-no-autorestart
+        override:
+          autorestart: true
+      # same override behavior on a task node
+      - name: disabled-task-node
+        type: task
+        step: autorestart-on-spot-instance
+        override:
+          autorestart: false
+    edges: []
 # Configure autorestart on a non-spot instance
 # Testing UI behavior - setting is ignored on execution
 - step:
