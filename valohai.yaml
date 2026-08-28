@@ -419,24 +419,37 @@
       - name: inherit-node
         type: execution
         step: autorestart-on-spot-instance
+        override:
+          command:
+            - echo "autorestart is enabled"
+            - echo "no warning shown, this is a spot instance"
       # explicit false must win over the step's true
       - name: disabled-node
         type: execution
         step: autorestart-on-spot-instance
         override:
           autorestart: false
+          command:
+            - echo "autorestart is disabled"
+            - echo "no warning shown, this is a spot instance"
       # step does not set autorestart, the override turns it on
       - name: enabled-node
         type: execution
         step: spot-instance-no-autorestart
         override:
           autorestart: true
+          command:
+            - echo "autorestart is enabled"
+            - echo "no warning shown, this is a spot instance"
       # same override behavior on a task node
       - name: disabled-task-node
         type: task
         step: autorestart-on-spot-instance
         override:
           autorestart: false
+          command:
+            - echo "autorestart is disabled"
+            - echo "no warning shown, this is a spot instance"
     edges: []
 # Configure autorestart on a non-spot instance
 # Testing UI behavior - setting is ignored on execution
@@ -456,3 +469,79 @@
     command:
       - echo Hello, World!
     environment: local-spot
+
+# Non-spot step without autorestart, so node overrides can turn it on
+- step:
+    name: non-spot-no-autorestart
+    image: python:3.13-slim
+    command:
+      - echo Running on a non-spot instance
+    environment: default
+
+# Autorestart on non-spot environments, resolved at the pipeline node level
+- pipeline:
+    name: autorestart-non-spot-pipeline
+    nodes:
+      # step sets autorestart on a non-spot environment -> the node keeps the
+      # setting, but the editor should say the environment is not a spot one
+      - name: nonspot-inherit-node
+        type: execution
+        step: autorestart-on-non-spot-instance
+        override:
+          command:
+            - echo "autorestart is enabled"
+            - echo "warning of non-spot instance shown"
+      # same on a task node
+      - name: nonspot-inherit-task-node
+        type: task
+        step: autorestart-on-non-spot-instance
+        override:
+          command:
+            - echo "autorestart is enabled"
+            - echo "warning of non-spot instance shown"
+      # explicit false must win over the step's true
+      - name: nonspot-disabled-node
+        type: execution
+        step: autorestart-on-non-spot-instance
+        override:
+          autorestart: false
+          command:
+            - echo "autorestart is disabled"
+            - echo "no warning shown, autorestart is off"
+      # step does not set autorestart, the override turns it on, still non-spot
+      - name: nonspot-enabled-node
+        type: execution
+        step: non-spot-no-autorestart
+        override:
+          autorestart: true
+          command:
+            - echo "autorestart is enabled"
+            - echo "warning of non-spot instance shown"
+      # the environment override moves the step onto spot, so autorestart applies
+      - name: env-override-to-spot-node
+        type: execution
+        step: autorestart-on-non-spot-instance
+        override:
+          environment: local-spot
+          command:
+            - echo "autorestart is enabled"
+            - echo "no warning shown, the override moved this onto spot"
+      # the environment override moves a spot step onto a non-spot environment
+      - name: env-override-to-non-spot-node
+        type: execution
+        step: autorestart-on-spot-instance
+        override:
+          environment: default
+          command:
+            - echo "autorestart is enabled"
+            - echo "warning of non-spot instance shown"
+      # same environment move on a task node
+      - name: env-override-to-non-spot-task-node
+        type: task
+        step: autorestart-on-spot-instance
+        override:
+          environment: default
+          command:
+            - echo "autorestart is enabled"
+            - echo "warning of non-spot instance shown"
+    edges: []
