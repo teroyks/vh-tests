@@ -470,6 +470,18 @@
       - echo Hello, World!
     environment: local-spot
 
+# Run for over five minutes on an Azure spot instance with autorestart enabled
+# Logs a heartbeat every 10 seconds (36 x 10 s = 6 min) to test eviction and restart
+- step:
+    name: azure-spot-autorestart-eviction
+    image: python:3.13-slim
+    command:
+      - echo Running on an Azure spot instance, autorestart enabled
+      - for i in $(seq 1 36); do echo "$(date -u +%H:%M:%S) heartbeat $i of 36"; sleep 10; done
+      - echo Finished without eviction
+    environment: azure-northeurope-spot
+    autorestart: true
+
 # Non-spot step without autorestart, so node overrides can turn it on
 - step:
     name: non-spot-no-autorestart
